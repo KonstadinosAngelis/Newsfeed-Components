@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Test',
+    date: 'Test',
+    firstParagraph: 'Test',
+    secondParagraph: 'Test',
+    thirdParagraph: 'Test'
   }
 ];
 
@@ -112,3 +119,43 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticles(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const article = document.createElement('div');
+  const maintitle = document.createElement('h2');
+  const articleDate = document.createElement('p')
+  const oneParagraph = document.createElement('p');  
+  const twoParagraph = document.createElement('p');  
+  const threeParagraph = document.createElement('p'); 
+  const expander = document.createElement('span');
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expander.classList.add('expandButton');
+
+  article.appendChild(maintitle);
+  article.appendChild(articleDate);
+  article.appendChild(oneParagraph);
+  article.appendChild(twoParagraph);
+  article.appendChild(threeParagraph);
+  article.appendChild(expander);
+
+  maintitle.textContent = title;
+  articleDate.textContent = date;
+  oneParagraph.textContent = firstParagraph;
+  twoParagraph.textContent = secondParagraph;
+  threeParagraph.textContent = thirdParagraph;
+  expander.textContent = "Expand";
+
+ expander.addEventListener('click', event => {
+  article.classList.toggle('article-open');
+ });
+
+ return article;
+}
+
+const topContent = document.querySelector('.articles');
+
+data.map(data => {
+  topContent.appendChild(createArticles(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+});
